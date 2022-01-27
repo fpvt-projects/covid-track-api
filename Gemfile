@@ -46,3 +46,14 @@ group :development do
   # gem "spring"
 end
 
+group :test do
+  gem 'rspec-rails'
+  gem 'database_rewinder'
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers'
+  gem 'vcr'
+  gem 'webmock'
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+end
+
