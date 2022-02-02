@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+    has_many :journals, dependent: :destroy
+
     validates :lastname, :firstname, length: {minimum:2}, presence: true
 
     #Birthdate should no be greater than the date today, Use Date.parse("January 12 2000") to enter data
