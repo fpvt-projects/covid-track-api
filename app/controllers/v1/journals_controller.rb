@@ -1,4 +1,4 @@
-class JournalsController < ApplicationController
+class V1::JournalsController < ApplicationController
   before_action :set_journal, only: %i[ show update destroy ]
 
   # GET /journals

@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/nsarno/knock.git
+  revision: 9214cd027422df8dc31eb67c60032fbbf8fc100b
+  ref: 9214cd027422df8dc31eb67c60032fbbf8fc100b
+  branch: master
+  specs:
+    knock (2.2.0)
+      bcrypt (~> 3.1)
+      jwt (~> 2.2.1)
+      rails (>= 5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -66,12 +77,11 @@ GEM
       i18n (>= 1.6, < 2)
       minitest (>= 5.1)
       tzinfo (~> 2.0)
-
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
+    bcrypt (3.1.16)
     bootsnap (1.10.2)
-
       msgpack (~> 1.2)
     builder (3.2.4)
     concurrent-ruby (1.1.9)
@@ -98,15 +108,17 @@ GEM
       railties (>= 5.0.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
-
     hashdiff (1.0.1)
+    http-accept (1.7.0)
+    http-cookie (1.0.4)
+      domain_name (~> 0.5)
     i18n (1.8.11)
-
       concurrent-ruby (~> 1.0)
     io-console (0.5.11)
     io-wait (0.2.1)
     irb (1.4.1)
       reline (>= 0.3.0)
+    jwt (2.2.3)
     loofah (2.13.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -141,7 +153,8 @@ GEM
     nokogiri (1.13.1)
       mini_portile2 (~> 2.7.0)
       racc (~> 1.4)
-
+    nokogiri (1.13.1-x86_64-darwin)
+      racc (~> 1.4)
     nokogiri (1.13.1-x86_64-linux)
       racc (~> 1.4)
     parallel (1.21.0)
@@ -149,7 +162,6 @@ GEM
       ast (~> 2.4.1)
     public_suffix (4.0.6)
     puma (5.6.0)
-
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.3)
@@ -188,7 +200,11 @@ GEM
     regexp_parser (2.2.0)
     reline (0.3.1)
       io-console (~> 0.5)
-
+    rest-client (2.1.0)
+      http-accept (>= 1.7.0, < 2.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     rexml (3.2.5)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
@@ -227,71 +243,54 @@ GEM
     ruby-progressbar (1.11.0)
     shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
-
-    rest-client (2.1.0)
-      http-accept (>= 1.7.0, < 2.0)
-      http-cookie (>= 1.0.2, < 2.0)
-      mime-types (>= 1.16, < 4.0)
-      netrc (~> 0.8)
-
     sqlite3 (1.4.2)
     strscan (3.0.1)
     thor (1.2.1)
     timeout (0.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
-
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.8)
     unicode-display_width (2.1.0)
     vcr (6.0.0)
     webmock (3.14.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
-
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.8)
-
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     zeitwerk (2.5.4)
 
 PLATFORMS
-
+  ruby
   x86_64-darwin-21
   x86_64-linux
 
-  ruby
-
-
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap
   database_rewinder
   debug
-
-  factory_bot_rails
-
   dotenv-rails
-
+  factory_bot_rails
+  knock!
   puma (~> 5.0)
   rack-cors
   rails (~> 7.0.1)
-
+  rest-client
   rspec-rails
   rubocop-rails
   rubocop-rspec
   shoulda-matchers
-
-  rest-client
-
   sqlite3 (~> 1.4)
   tzinfo-data
   vcr
   webmock
 
 RUBY VERSION
-   ruby 2.7.4p191
+   ruby 3.0.0p0
 
 BUNDLED WITH
-   2.1.4
+   2.2.3
