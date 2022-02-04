@@ -1,5 +1,8 @@
 class User < ApplicationRecord
+    belongs_to :account, dependent: :destroy
     has_many :journals, dependent: :destroy
+    has_many :quarantineLogs, dependent: :destroy
+    has_many :resultLogs, through: :quaratineLogs
 
     validates :lastname, :firstname, length: {minimum:2}, presence: true
 
@@ -10,4 +13,6 @@ class User < ApplicationRecord
     validates :cellnumber, length: {minimum: 11, maximum: 13}, format:{with: /\A[+-]?\d+\z/ }, presence: true, uniqueness: true
 
     validates :gender, :address, :city, presence: true
+
+
 end
