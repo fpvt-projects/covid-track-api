@@ -1,3 +1,3 @@
 class ResultLog < ApplicationRecord
-    belongs_to :quarantine_logs, dependent: :destroy
+    has_one :quarantine_log
 end
