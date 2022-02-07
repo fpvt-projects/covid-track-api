@@ -19,6 +19,7 @@ class Seeders::InitAccountUserData < ApplicationService
 
         @logger.info "Fetching dummy data from text files"
 
+        #converting the text file to array
         lastname_list = File.open('app/assets/raw_data/lastname.txt').readlines.map(&:chomp)
         firstname_list = File.open('app/assets/raw_data/firstname.txt').readlines.map(&:chomp)
         region_list = File.open('app/assets/raw_data/region.txt').readlines.map(&:chomp)
