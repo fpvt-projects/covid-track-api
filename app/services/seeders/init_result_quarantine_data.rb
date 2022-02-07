@@ -4,11 +4,12 @@ class Seeders::InitResultQuarantineData < ApplicationService
 
         result_log = 0
 
+        #quarantine simulation for 7 days. The patient should attain a negative result on or before the last day of quarantine
         for count in 1..3 do
             date = rand(2.years).seconds.ago
             date_count = 0
             7.times do
-                createResult("Positive")
+                createResult("#{date_count > 4 ? "Negative" : "Positive"}")
                 QuarantineLog.create(
                     status: "#{date_count == 6 ? "Ended" : "Ongoing"}", 
                     date: "#{date + date_count.days}",
@@ -21,6 +22,7 @@ class Seeders::InitResultQuarantineData < ApplicationService
 
         @logger.info "User 1 to 3 underwent quarantine period"
 
+        # loops for random testing
         for count in 1..15 do
             date = rand(2.years).seconds.ago
             2.times do
@@ -40,6 +42,7 @@ class Seeders::InitResultQuarantineData < ApplicationService
     
     end
 
+    #separate function for randomized antigen type test
     def createResult(result)
         random = rand(0..2).to_i
         ran = random.even?
