@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+Seeders::InitAccountUserData.new.invoke
+Seeders::InitResultQuarantineData.new.invoke
+Seeders::InitJournalData.new.invoke
