@@ -1,0 +1,3 @@
+Nasopharyngeal_swab
+Sputum/Saliva
+Whole_blood/Serum
