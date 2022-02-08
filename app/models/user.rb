@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-    belongs_to :account, dependent: :destroy
-    has_many :journals, dependent: :destroy
-    has_many :quarantine_logs, dependent: :destroy
+    belongs_to :account
+    has_many :journals
+    has_many :quarantine_logs
     has_many :result_logs, through: :quarantine_logs
 
     validates :lastname, :firstname, length: {minimum:2}, presence: true
