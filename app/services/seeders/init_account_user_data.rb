@@ -1,17 +1,17 @@
 class Seeders::InitAccountUserData < ApplicationService
     def invoke 
         @logger.info 'Initializing accounts database restart'
-        Account.destroy_all 
-        User.destroy_all
-        Journal.destroy_all
-        ResultLog.destroy_all
-        QuarantineLog.destroy_all
+        # Account.delete_all 
+        # User.delete_all
+        # Journal.delete_all
+        # ResultLog.delete_all
+        # QuarantineLog.delete_all
         @logger.info 'Purged all previous datas'
 
         count = 0
 
         15.times do 
-            Account.create(email: "Tester0#{count}@gmail.com", password: "testing123")
+            Account.create(email: "Tester0#{count}@gmail.com", password: "testing123", password_confirmation: "testing123")
             count += 1
         end
 
@@ -23,10 +23,10 @@ class Seeders::InitAccountUserData < ApplicationService
         lastname_list = File.open('app/assets/raw_data/lastname.txt').readlines.map(&:chomp)
         firstname_list = File.open('app/assets/raw_data/firstname.txt').readlines.map(&:chomp)
         region_list = File.open('app/assets/raw_data/region.txt').readlines.map(&:chomp)
-
+        account_ids = ActiveRecord::Base.connection.select_values("select id from Accounts")
         count = 0
 
-        15.times do
+        account_ids.each do |ids|
             bool = count.even?
             lastname = lastname_list[count]
             firstname = firstname_list[count]
@@ -41,7 +41,7 @@ class Seeders::InitAccountUserData < ApplicationService
                 gender: "#{bool ? "Female" : "Male"}",
                 cellnumber: "090#{10000000 + count}",
                 birthdate: "#{date + count}",
-                account_id: count
+                account_id: ids
             )
             count += 1
         end

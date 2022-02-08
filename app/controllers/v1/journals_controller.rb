@@ -1,24 +1,31 @@
 class V1::JournalsController < ApplicationController
   before_action :set_journal, only: %i[ show update destroy ]
+  before_action :authenticate_user
 
   # GET /journals
+  #only show the journals connected to the user
   def index
-    @journals = Journal.all
+    @journals = Journal.where(user_id: params[:user_id])
 
-    render json: @journals
+    if @journals == nil 
+      flash[:notice] ="No entry"
+    else
+      render json: @journals
+    end
+    
   end
 
   # GET /journals/1
-  def show
-    render json: @journal
-  end
+  # def show
+  #   render json: @journal
+  # end
 
   # POST /journals
   def create
     @journal = Journal.new(journal_params)
 
     if @journal.save
-      render json: @journal, status: :created, location: @journal
+      render json: @journal, status: :created
     else
       render json: @journal.errors, status: :unprocessable_entity
     end
