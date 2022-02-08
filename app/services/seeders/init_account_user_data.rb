@@ -23,6 +23,8 @@ class Seeders::InitAccountUserData < ApplicationService
         lastname_list = File.open('app/assets/raw_data/lastname.txt').readlines.map(&:chomp)
         firstname_list = File.open('app/assets/raw_data/firstname.txt').readlines.map(&:chomp)
         region_list = File.open('app/assets/raw_data/region.txt').readlines.map(&:chomp)
+
+        #creates an array from accounts ID
         account_ids = ActiveRecord::Base.connection.select_values("select id from Accounts")
         count = 0
 
