@@ -1,0 +1,15 @@
+Region_I
+Region_II
+Region_III
+Region_IV-A
+Region_V
+MIMAROPA
+Region_VI
+Region_VII
+Region_IX
+Region_X 
+Region_XI
+Region_XII
+NCR
+CAR
+BARMM
