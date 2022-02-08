@@ -14,5 +14,13 @@ class User < ApplicationRecord
 
     validates :gender, :address, :city, presence: true
 
+    #before saving convert the date user input to datetime
+    before_save :parse_birthdate
+
+    private
+
+    def parse_birthdate
+        self.birthdate.to_datetime
+    end
 
 end

@@ -11,8 +11,9 @@ class Seeders::InitAccountUserData < ApplicationService
         count = 0
 
         15.times do 
-            Account.create(email: "Tester0#{count}@gmail.com", password: "testing123")
+            gen = Account.new(email: "Tester0#{count}@gmail.com", password: "testing123", password_confirmation: "testing123")
             count += 1
+            gen.save
         end
 
         @logger.info "15 accounts created"
@@ -32,7 +33,7 @@ class Seeders::InitAccountUserData < ApplicationService
             firstname = firstname_list[count]
             region = region_list[count]
             date = Date.parse("May 14 1980") 
-            User.create(
+            gen = User.new(
                 lastname: "#{lastname}",
                 firstname: "#{firstname}", 
                 middlename: "#{bool ? "dummy" : nil }", 
@@ -43,6 +44,7 @@ class Seeders::InitAccountUserData < ApplicationService
                 birthdate: "#{date + count}",
                 account_id: count
             )
+            gen.save
             count += 1
         end
 

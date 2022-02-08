@@ -3,7 +3,7 @@ class ApplicationController < ActionController::API
     include ActionController::Cookies
     include ActionController::RequestForgeryProtection
     protect_from_forgery with: :exception
-    before_action :set_csrf_cookie, :authenticate_user
+    before_action :set_csrf_cookie
     skip_before_action :verify_authenticity_token
 
     private

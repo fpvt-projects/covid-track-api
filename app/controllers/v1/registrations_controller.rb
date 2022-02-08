@@ -1,10 +1,11 @@
 class V1::RegistrationsController < ApplicationController
     def create
-        account = Account.create!(
+        account = Account.new(
             email: params['email'],
             password: params['password'],
             password_confirmation: params['password_confirmation']
         )
+        account.save
 
         if account
             session[:account_id] = account.id
@@ -16,4 +17,5 @@ class V1::RegistrationsController < ApplicationController
             render json: {status: 500}
         end
     end
+
 end
