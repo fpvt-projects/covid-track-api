@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_08_124815) do
+ActiveRecord::Schema.define(version: 2022_02_09_134747) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "email"
@@ -29,11 +29,11 @@ ActiveRecord::Schema.define(version: 2022_02_08_124815) do
 
   create_table "quarantine_logs", force: :cascade do |t|
     t.string "status"
-    t.datetime "date", precision: 6
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.integer "result_log_id"
+    t.date "date"
   end
 
   create_table "result_logs", force: :cascade do |t|
@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2022_02_08_124815) do
     t.string "brand"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
