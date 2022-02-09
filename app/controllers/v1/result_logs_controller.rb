@@ -11,12 +11,22 @@ class V1::ResultLogsController < ApplicationController
     def create
         @result_log = ResultLog.new(result_log_params)
 
-        @result_log.save
-
         if @result_log.save
             render json: @result_log, status: :created
           else
             render json: @result_log.errors.full_messages, status: :unprocessable_entity
+        end
+    end
+
+    #can only be update if its the 7th day of quarantine
+    #NOT YET TESTED
+    def update
+        only_today = QuarantineLog.find_by(date: Date.today)
+        if @result_log.update(result_log_params) && only_today
+            render json: @result_log
+        else
+            render json: @result_log.errors,
+            status: :unprocessable_entity
         end
     end
 
@@ -27,10 +37,10 @@ class V1::ResultLogsController < ApplicationController
     end
 
     def result_log_params
-        params.require(:result_log).permit(:antigen_type, :result, :brand)
+        params.require(:result_log).permit(:antigen_type, :result, :brand, :user_id)
     end
 
-    def quarantine_log_params 
-        params.require(:quarantine_log).permit(:date, :status, :user_id, :result_log_id)
-    end
+    # def quarantine_log_params 
+    #     params.require(:quarantine_log).permit(:date, :status, :user_id, :result_log_id)
+    # end
 end
