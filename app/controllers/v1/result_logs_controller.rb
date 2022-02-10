@@ -21,7 +21,7 @@ class V1::ResultLogsController < ApplicationController
     #can only be update if its the 7th day of quarantine
     #NOT YET TESTED
     def update
-        only_today = QuarantineLog.find_by(date: Date.today)
+        only_today = QuarantineLog.same_day.same_user
         if @result_log.update(result_log_params) && only_today
             render json: @result_log
         else
