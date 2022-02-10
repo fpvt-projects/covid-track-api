@@ -6,41 +6,17 @@ class Seeders::InitResultQuarantineData < ApplicationService
 
         result_log = 0
 
-        #quarantine simulation for 7 days. The patient should attain a negative result on or before the last day of quarantine
-        for id in 1..3 do
-            #random dates from Jan 1 2019 to Jan 1 2021
-            randomer = rand(1546323227..1641709011)
-            date_count = 0
-            7.times do
-                createResult("#{date_count > 4 ? "Negative" : "Positive"}", id)
-                result_log += 1
-                q = QuarantineLog.new(
-                    status: "#{date_count == 6 ? "Ended" : "Ongoing"}", 
-                    date: Date.parse((Time.at(randomer) + date_count.days).to_s),
-                    user_id: id,
-                    result_log_id: result_log)
-                date_count += 1
-                q.save 
-                if q.save == false
-                    @logger.info `#{q.errors.full_messages}`
-                end
-            end
-        end
-
-        @logger.info "User 1 to 3 underwent quarantine period"
-
         # loops for random testing
         user_ids.each do |id|
-            randomer = rand(1546323227..1641709011)
-            date = Date.parse(Time.at(randomer).to_s)
+
+            if id < 3
+                2.times do
+                createResult("Positive", id)
+                end
+            else
             2.times do
                 createResult("Negative", id)
-                QuarantineLog.create(
-                    status: "Random", 
-                    date: date,
-                    user_id: id,
-                    result_log_id: result_log)
-                result_log += 1
+                end
             end
         end
 
@@ -59,17 +35,14 @@ class Seeders::InitResultQuarantineData < ApplicationService
 
         type = type_list[random]
 
-        r = ResultLog.new(
+        rs = ResultLog.new(
             antigen_type: "#{type}", 
             result: result,
             brand: "Sanofi",
             user_id: id
         )
-
-        r.save
-
-        if r.save == false
-            @logger.info "#{r.errors.full_messages}"
+        if rs.save == false
+            @logger.info rs.errors.full_messages
         end
 
     end
