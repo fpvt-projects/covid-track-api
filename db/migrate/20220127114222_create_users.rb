@@ -7,8 +7,9 @@ class CreateUsers < ActiveRecord::Migration[7.0]
       t.string :address 
       t.string :city 
       t.string :cellnumber 
+      t.string :gender
       t.date :birthdate
-      t.integer :age
+      t.integer :account_id
       
       t.timestamps
     end
