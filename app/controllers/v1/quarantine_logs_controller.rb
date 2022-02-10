@@ -9,14 +9,15 @@ class V1::QuarantineLogsController < ApplicationController
 
     #note: Quarantine Logs is dependent on Results_log_id and User_id.
     #note: Result Logs and Quarantine logs is 1:1, user and quarantine is 1:many
+    ##note: we wont be needing this anymore since its creation is tied to the result logs
     def create
-        @quarantine_log = QuarantineLog.new(quarantine_log_params)
+        # @quarantine_log = QuarantineLog.new(quarantine_log_params)
 
-        if @quarantine_log.save
-            render json: @quarantine_log, status: :create
-        else
-            render json: @journal.errors.full_messages, status: :unprocessable_entity
-        end
+        # if @quarantine_log.save
+        #     render json: @quarantine_log, status: :create
+        # else
+        #     render json: @journal.errors.full_messages, status: :unprocessable_entity
+        # end
     end
 
     private

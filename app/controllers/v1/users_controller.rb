@@ -17,18 +17,8 @@ class V1::UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.create(
-      lastname: params['lastname'],
-      middlename: params['middlename'],
-      firstname: params['firstname'],
-      address: params['address'],
-      city: params['city'],
-      cellnumber: params['cellnumber'],
-      birthdate: params['birthdate'],
-      gender: params['gender'],
-      account_id: params['account_id']
-    )
-    
+    @user = User.new(user_params)
+    @user.save
     if @user
       render json: @user, status: :created
     else
