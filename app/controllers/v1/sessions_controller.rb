@@ -3,15 +3,15 @@ class V1::SessionsController < ApplicationController
     before_action :authenticate_user
 
     def create
-        account = Account
+        @account = Account
             .find_by(email: params["email"])
             .try(:authenticate, params["password"])
         
-        if account
-            session[:account_id] = account.id
+        if @account
+            session[:account_id] = @account.id
             render json: {
                 status: :created,
-                account: account
+                account: @account
             }
         else
             render json: { status: 401 }
