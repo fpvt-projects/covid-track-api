@@ -6,7 +6,6 @@ class QuarantineLog < ApplicationRecord
     scope :same_day, -> { where(date: Date.today)}
     scope :last_start, -> { where(status: "Start")}
     scope :ended, -> { where(status: "Ended")}
-    scope :ongoing, -> { where(status: "Ongoing" && "Start")}
 
     #filter all entries made today
     #Date.today is usually Date +0000hours
@@ -16,13 +15,16 @@ class QuarantineLog < ApplicationRecord
     after_create :update_case_counter
 
     #updates CaseCounter, every creation of quarantineLog
+    #.distinct only gets 1 user id regardless of status
     def update_case_counter 
         counter = CaseCount.first 
+        status = ["Ongoing", "Start"]
+        
         today_entries = QuarantineLog.entries_today
         counter.update(
            total_cases: QuarantineLog.last_start.count,
            total_recoveries: QuarantineLog.ended.count,
-           active_cases: today_entries.ongoing.count,
+           active_cases: today_entries.where(status: status).select(:user_id).distinct.count,
            daily_new: today_entries.last_start.count,
            daily_recovered: today_entries.ended.count
         )
