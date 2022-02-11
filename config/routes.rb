@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     resources :users
     resources :sessions, only: [:create, :destroy]
     resources :registrations, only: [:create]
-    resources :quarantine_logs,
+    resources :quarantine_logs
     resources :result_logs
-    resources :case_counts
+    resources :case_counts, only: [:index]
 end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
