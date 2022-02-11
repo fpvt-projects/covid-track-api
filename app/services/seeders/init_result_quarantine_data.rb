@@ -1,6 +1,20 @@
 class Seeders::InitResultQuarantineData < ApplicationService
     require 'date'
     def invoke
+        @logger.info 'Setting up local application case counter'
+
+        counter = CaseCount.new(
+            total_cases: 0,
+            total_recoveries: 0,
+            active_cases: 0,
+            daily_new: 0,
+            daily_recovered: 0
+        )
+        if counter.save
+            @logger.info 'counter established'
+        else
+            @logger.info counter.errors.full_messages
+        end
         @logger.info 'Priming results and quarantine databases'
         user_ids = ActiveRecord::Base.connection.select_values("select id from Accounts")
 
