@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
 
   namespace :v1 do
     resources :journals
@@ -7,6 +8,7 @@ Rails.application.routes.draw do
     resources :registrations, only: [:create]
     resources :quarantine_logs
     resources :result_logs
+    resources :case_counts, only: [:index]
 end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
