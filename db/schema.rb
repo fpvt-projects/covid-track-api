@@ -10,39 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_09_134747) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_02_04_165915) do
   create_table "accounts", force: :cascade do |t|
     t.string "email"
     t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "journals", force: :cascade do |t|
     t.string "title"
     t.text "content"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "user_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "quarantine_logs", force: :cascade do |t|
     t.string "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.date "date"
     t.integer "user_id"
     t.integer "result_log_id"
-    t.date "date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "result_logs", force: :cascade do |t|
     t.string "antigen_type"
     t.string "result"
     t.string "brand"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -52,11 +51,11 @@ ActiveRecord::Schema.define(version: 2022_02_09_134747) do
     t.string "address"
     t.string "city"
     t.string "cellnumber"
-    t.date "birthdate"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "gender"
+    t.date "birthdate"
     t.integer "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
