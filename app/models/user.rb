@@ -12,7 +12,7 @@ class User < ApplicationRecord
     #Cellnumber should be unique, and only numerical string with length between 11 to 13 chars.
     validates :cellnumber, length: {minimum: 11, maximum: 13}, format:{with: /\A[+-]?\d+\z/ }, presence: true, uniqueness: true
 
-    validates :gender, :address, :city, presence: true
+    validates :gender, :address, :region, presence: true
 
     #before saving convert the date user input to datetime
     before_save :parse_birthdate

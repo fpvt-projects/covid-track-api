@@ -39,7 +39,7 @@ class Seeders::InitAccountUserData < ApplicationService
                 firstname: "#{firstname}", 
                 middlename: "#{bool ? "dummy" : nil }", 
                 address: "#{firstname} street, #{lastname} city, #{count}",
-                city: "#{region}",
+                region: "#{region}",
                 gender: "#{bool ? "Female" : "Male"}",
                 cellnumber: "090#{10000000 + count}",
                 birthdate: "#{date + count}",
