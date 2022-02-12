@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-    let(:validuser) {User.new(lastname: "Madrigal", firstname: "Bruno", middlename: "Silenzio", address: "Casa Madrigal", city: "Casa de Papel", cellnumber: "09188875555", birthdate: Date.parse("January 27 2000"), age: 22, gender: "Male")}
+    let(:validuser) {User.new(lastname: "Madrigal", firstname: "Bruno", middlename: "Silenzio", address: "Casa Madrigal", region: "Casa de Papel", cellnumber: "09188875555", birthdate: Date.parse("January 27 2000"), age: 22, gender: "Male")}
 
     context "User schema validations" do
         it "is invalid due to lack of information" do
@@ -32,12 +32,12 @@ RSpec.describe User, type: :model do
         it "is invalid, the birth date should be less than the date today" do
             user = User.new(birthdate: Date.today)
             user.save
-            expect(user.errors.full_messages).to include("Birthdate must be less than 2022-01-27")
+            expect(user.errors.full_messages).to include("Birthdate must be less than #{Date.today}")
         end
 
         it "is invalid, cellnumbers should be unique" do
             validuser.save
-            user = User.new(lastname: "Docter", firstname: "Pete", middlename: "Enrico", address: "Riviera", city: "itali", cellnumber: "09188875555", birthdate: Date.parse("December 27 2000"), age: 21, gender: "Female")
+            user = User.new(lastname: "Docter", firstname: "Pete", middlename: "Enrico", address: "Riviera", region: "itali", cellnumber: "09188875555", birthdate: Date.parse("December 27 2000"), age: 21, gender: "Female")
             user.save
             expect(user.errors.full_messages).to include ("Cellnumber has already been taken")
         end
