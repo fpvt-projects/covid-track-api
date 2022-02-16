@@ -48,6 +48,7 @@ API Link: **https://c0v1dtrackingapi.herokuapp.com/**
 - [ ] Users are able to upload profile pictures
 - [ ] API will generate QR codes specific for each users showing their results and profile
 - [ ] Will add Admin and Medical Roles
+- [ ] Integrate React Front-end with the API
 
 
 
