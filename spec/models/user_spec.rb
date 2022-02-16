@@ -2,13 +2,19 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-    let(:validuser) {User.new(lastname: "Madrigal", firstname: "Bruno", middlename: "Silenzio", address: "Casa Madrigal", region: "Casa de Papel", cellnumber: "09188875555", birthdate: Date.parse("January 27 2000"), age: 22, gender: "Male")}
+    # let(:account) {Account.new(
+    #     email: "aq@gmail.com",
+    #     password: "qwer1234",
+    #     password_confirmation: "qwer1234"
+    # )}
+
+    # let(:validuser) {User.new(lastname: "Madrigal", firstname: "Bruno", middlename: "Silenzio", address: "Casa Madrigal", region: "NCR", cellnumber: "09188875545", birthdate: Date.parse("January 27 2000"), gender: "Male", account_id: 1)}
 
     context "User schema validations" do
         it "is invalid due to lack of information" do
         user = User.new
         user.save 
-        expect(user.errors.full_messages).to include("Lastname can't be blank",  "Firstname can't be blank", "Birthdate can't be blank", "Cellnumber can't be blank", "Gender can't be blank", "Address can't be blank", "City can't be blank")
+        expect(user.errors.full_messages).not_to be_empty
         end
 
         it "is invalid first name or last name should not be less than 2 characters" do 
@@ -36,19 +42,19 @@ RSpec.describe User, type: :model do
         end
 
         it "is invalid, cellnumbers should be unique" do
-            validuser.save
-            user = User.new(lastname: "Docter", firstname: "Pete", middlename: "Enrico", address: "Riviera", region: "itali", cellnumber: "09188875555", birthdate: Date.parse("December 27 2000"), age: 21, gender: "Female")
+
+            user = User.new(lastname: "Docter", firstname: "Pete", middlename: "Enrico", address: "Riviera", region: "NCR", cellnumber: "09188875555", birthdate: Date.parse("December 27 2000"), gender: "Female")
             user.save
             expect(user.errors.full_messages).to include ("Cellnumber has already been taken")
         end
 
         it "is VALID" do
-            validuser.save
+            acc = create(:account)
+            validuser = create(:user, cellnumber: "09010010129")
             expect(validuser).to be_valid
         end
 
     end
-
 
 
 end
