@@ -44,6 +44,7 @@ API Link: **https://c0v1dtrackingapi.herokuapp.com/**
 ```
 
 ## Task list
+The following features are still in development:
 - [ ] Users will able to add pictures for results
 - [ ] Users are able to upload profile pictures
 - [ ] API will generate QR codes specific for each users showing their results and profile
