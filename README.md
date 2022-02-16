@@ -10,7 +10,7 @@ API Link: **https://c0v1dtrackingapi.herokuapp.com/**
 
 ## How to run the application with front-end
 ### Covid-track-api
-1. In order to fully run the utlize the application you need the React app https://github.com/fpvt-projects/covid-track-app/
+1. In order to fully run the utilize the application you need the React app https://github.com/fpvt-projects/covid-track-app/
 2. Install dependencies, run `npm i` command.
 3. Change the axios base url to http://localhost:3001 in the App.js file.
 4. Start the web server using `npm start` command. The app will be served at http://localhost:3000.
@@ -42,3 +42,12 @@ API Link: **https://c0v1dtrackingapi.herokuapp.com/**
 * Rails 7.0.1
 * yarn 1.22.15
 ```
+
+## Task list
+- [ ] Users will able to add pictures for results
+- [ ] Users are able to upload profile pictures
+- [ ] API will generate QR codes specific for each users showing their results and profile
+- [ ] Will add Admin and Medical Roles
+
+
+
