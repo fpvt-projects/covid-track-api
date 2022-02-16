@@ -2,7 +2,7 @@
 
 Covid-track-API project aims to help track record of covid test result by PH consumers that uses test-kits bought from online stores.
 
-Test is with postman
+Try with postman
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/a6dd53dd8ffb20f44e0b)
 
