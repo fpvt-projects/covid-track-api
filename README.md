@@ -1,25 +1,44 @@
-# README
+# Covid Track API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Covid-track-API project aims to help track record of covid test result by PH consumers that uses test-kits bought from online stores.
 
-Things you may want to cover:
+Test is with postman
 
-* Ruby version
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/a6dd53dd8ffb20f44e0b)
 
-* System dependencies
+API Link: **https://c0v1dtrackingapi.herokuapp.com/**
 
-* Configuration
+## How to run the application with front-end
+### Covid-track-api
+1. In order to fully run the utlize the application you need the React app https://github.com/fpvt-projects/covid-track-app/
+2. Install dependencies, run `npm i` command.
+3. Change the axios base url to http://localhost:3001 in the App.js file.
+4. Start the web server using `npm start` command. The app will be served at http://localhost:3000.
+5. Fork or download the api, then run `bundle install` from this repository
+6. Run `rails db:migrate` and `rails db:seed` to setup the database.
+7. Run the api server using `rails s -p 3001` to avoid conflict with the react server.
 
-* Database creation
 
-* Database initialization
+## Features
+- Mobile view responsiveness.
+- Registration
+  - Account registration with automatic sign in.
+  - Can also submit test result in the registration.
+- Journal
+  - Helps monitor the user's condition.
+  - Users can create, edit, and delete journal entries.
+- Submit result & result log
+  - Users are able to submit record of their test results.
+  - Users are able to view result logs.
+- Chart & Counts
+  - Able to view numbers of covid data.
+- News updates
+  - Get updated with the latest news.
+  - Images, title, content, and link to the original article of the news.
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# covid-track-api
+## Dependencies
+```
+* Ruby 3.0.0
+* Rails 7.0.1
+* yarn 1.22.15
+```
